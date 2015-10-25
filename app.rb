@@ -41,22 +41,30 @@ class App < Sinatra::Base
   end
   
   post '/list/add' do
+    @password = params[:password]
     @title = params[:name]
     newQ = Quest.new
     begin
+      if @password != ENV['QW_PASSWORD']
+        raise
+      end
       newQ.transaction do
         newQ.name = @title
         newQ.save        
       end
       gen_success_message
     rescue ActiveRecord::RecordInvalid => invalid
-       gen_error_message
+      gen_error_message
     end
   end
   
   delete '/list/delete/:quest_id' do
+    @password = params[:password]
     questid = params[:quest_id]
     begin
+      if @password != ENV['QW_PASSWORD']
+        raise
+      end
       newQ = Quest.find(questid)
       newQ.transaction do
         newQ.destroy
