@@ -1,0 +1,11 @@
+language: ruby
+rvm:
+- 2.0.0
+deploy:
+  provider: heroku
+  api_key:
+    secure: Ukv62Ke57qz5alAbBgU0paMhhBLXkXcsg3dypjfBwwPiGhMctTubJVfQbIbfdTWxfUo4xzgByT96Hi6EWUszJHBgyWMWFPGsaY2Oam7mB8JCa/wORBtVHWjzugfh71bEoXIc5hgiirbcStOfhTF3IpZ9ov1CWtf82s5PMSQmPtqYWq16DJoqikZd8xg114Sa6eiZt9rFgvRRW5V0/GpZfK3WZleKGLaZ9AHOgh1OlZrwr663UARc8n1P/Vd7od9Nwwp2QeGHI/9HeSQbBZXafsZKJg7H3DMqdcfSvhZZM6JzxIzww6hfUni1gTY+6w5F7QeRFAu1OUJHvCtjKeC1ppYJ5mdIgETkBuIRUU8NNfanNqaHtQ6TBzT96oYsl2YmNmT70ulsr8qwlgglXH6Y8z36nBT+A0TEo0FN5gln202LCXGm4t+4Ra1IuAiZQx8qXKqaDRJa6kBvajSY485rohc60LshPXIQ2q7I1iL4PcXjgiSSZhvtF0hpek99+cdC5k//sm/p1aVQIqXutJdi2YS3KXguMkjRxvey0Az+cy63s5bFpDYUiBHSoa2OXjvQApIRA+Mf6rl2EhvsVM2TzaU4pb+bUIuH8FH30Yjl1izrrjgoazNESmkSWyyZhAa8+lZuZsaARcHeRp4R6RXnrc0UP7U7jzGTq/CpRjyylFo=
+  run: "rake db:migrate"
+  app: infinite-shelf-2944
+  on:
+    repo: yuchan/questwalk-api

@@ -9,18 +9,30 @@ class Quest < ActiveRecord::Base
 end
 
 class App < Sinatra::Base
-  def gen_success_message
-    {
-      status: 'success',  
-      message: 'database update completed successfully.'
-    }.to_json
+  before do
+    @password = params[:password]
   end
   
-  def gen_error_message
-    {
-      status: 'error',
-      message: 'database update failed.'
-    }.to_json
+  helpers do
+    def easyauth
+      if @password != ENV['QW_PASSWORD']
+        raise
+      end
+    end
+    
+    def gen_success_message
+      {
+        status: 'success',  
+        message: 'database update completed successfully.'
+      }.to_json
+    end
+  
+    def gen_error_message
+      {
+        status: 'error',
+        message: 'database update failed.'
+      }.to_json
+    end
   end
   
   get '/list' do
@@ -41,13 +53,10 @@ class App < Sinatra::Base
   end
   
   post '/list/add' do
-    @password = params[:password]
+    easyauth
     @title = params[:name]
     newQ = Quest.new
     begin
-      if @password != ENV['QW_PASSWORD']
-        raise
-      end
       newQ.transaction do
         newQ.name = @title
         newQ.save        
@@ -59,15 +68,12 @@ class App < Sinatra::Base
   end
   
   delete '/list/delete/:quest_id' do
-    @password = params[:password]
+    easyauth
     questid = params[:quest_id]
     begin
-      if @password != ENV['QW_PASSWORD']
-        raise
-      end
-      newQ = Quest.find(questid)
-      newQ.transaction do
-        newQ.destroy
+      quest = Quest.find(questid)
+      quest.transaction do
+        quest.destroy
       end
       gen_success_message
     rescue ActiveRecord::RecordNotFound
