@@ -11,12 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151025101130) do
+ActiveRecord::Schema.define(version: 20151101043559) do
 
   create_table "quests", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "username"
+    t.string   "password_digest"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "token"
+    t.string   "sex"
+    t.integer  "age"
+    t.float    "height"
+    t.float    "weight"
+  end
+
+  add_index "users", ["username"], name: "index_users_on_username", unique: true
 
 end

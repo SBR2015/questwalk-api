@@ -1,8 +1,6 @@
-require './app'
-
-# activerecord を読み込み
+# coding: utf-8
+require './model'
 require 'sinatra/activerecord/rake'
-
 
 begin
   require 'rspec/core/rake_task'

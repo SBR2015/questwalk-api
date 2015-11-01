@@ -7,6 +7,7 @@ gem 'sinatra-contrib'
 gem "sinatra-activerecord"
 gem "rake"
 gem "puma"
+gem "bcrypt"
 
 group :development, :test do
   gem "sqlite3"

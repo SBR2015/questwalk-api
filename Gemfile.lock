@@ -16,6 +16,7 @@ GEM
       tzinfo (~> 1.1)
     arel (6.0.3)
     backports (3.6.6)
+    bcrypt (3.1.10)
     builder (3.2.2)
     diff-lcs (1.2.5)
     i18n (0.7.0)
@@ -67,6 +68,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt
   pg
   puma
   rake
