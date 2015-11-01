@@ -1,5 +1,5 @@
 # coding: utf-8
-require './model'
+require './app'
 require 'sinatra/activerecord/rake'
 
 begin
